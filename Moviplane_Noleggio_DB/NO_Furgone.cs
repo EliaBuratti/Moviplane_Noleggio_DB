@@ -19,6 +19,7 @@ namespace Moviplane_Noleggio_DB
 
         public override bool ConsegnaMezzo(string codiceMezzo)
         {
+            return true;
 /*            try    DA CAPIRE!!!!
             {
 

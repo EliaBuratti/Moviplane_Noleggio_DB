@@ -11,7 +11,7 @@ namespace Moviplane_Noleggio_DB
 {
     internal class AN_Furgone : Veicolo
     {
-        public AN_Furgone(string codice, string descrizione, string targa, string marca, int posti, int porte, decimal prezzo) : base(codice, descrizione, targa, marca, posti, porte, prezzo)
+        public AN_Furgone(string codice, string descrizione, string targa, string marca, int posti, int porte, decimal prezzo, bool disponibile) : base(codice, descrizione, targa, marca, posti, porte, prezzo, disponibile)
         {
         }
 
@@ -29,7 +29,7 @@ namespace Moviplane_Noleggio_DB
                 SqlCommand cmd = new();
                 cn.Open();
 
-                string query = "INSERT INTO Anagrafica_Furgoni VALUES  (@Codice, @Descrizione, @Targa, @Marca, @Posti, @Porte, @Prezzo)";
+                string query = "INSERT INTO Anagrafica_Furgoni VALUES  (@Codice, @Descrizione, @Targa, @Marca, @Posti, @Porte, @Prezzo, @Disponibile)"; //(Codice, Descrizione, Targa, Marca, Posti, Porte, [Prezzo GG],Disponibile)
                 cmd = new SqlCommand(query, cn);
                 cmd.Parameters.AddWithValue("@Codice", Codice);
                 cmd.Parameters.AddWithValue("@Descrizione", Descrizione);
@@ -38,9 +38,10 @@ namespace Moviplane_Noleggio_DB
                 cmd.Parameters.AddWithValue("@Posti", Posti);
                 cmd.Parameters.AddWithValue("@Porte", Porte);
                 cmd.Parameters.AddWithValue("@Prezzo", Prezzo);
+                cmd.Parameters.AddWithValue("@Disponibile", Disponibile);
                 cmd.ExecuteNonQuery();
 
-                Console.WriteLine($"{Targa}. Was added!");
+                Console.WriteLine($"{Targa}. E stato aggiunto!");
                 return true;
 
             }
@@ -65,7 +66,6 @@ namespace Moviplane_Noleggio_DB
                 int rowDeleted = cmd.ExecuteNonQuery();
 
                 cn.Close();
-                Console.WriteLine($"{CodiceMezzo}. Was deleted!");
                 return (rowDeleted > 0);
 
             }

@@ -10,8 +10,8 @@ namespace Moviplane_Noleggio_DB
     {
         public static string accessoDB = "Data Source =LAPTOP-TQHCDVHM\\SQLEXPRESS;Initial Catalog=Noleggi;Integrated Security = True; Trust Server Certificate=True";
 
-        protected string Nome { get; set; }
-        protected string Cognome { get; set; }
+        protected string? Nome { get; set; }
+        protected string? Cognome { get; set; }
         protected DateOnly Data_inizio { get; set; }
         protected int Giorni { get; set; }
         protected DateOnly Data_fine { get; set; }
